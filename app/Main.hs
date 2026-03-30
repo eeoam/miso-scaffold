@@ -31,15 +31,18 @@ data Action
   deriving stock (Show, Eq)
 
 app :: App State Action
-app = (component () updateModel viewModel)
+app = (component init_state updateModel viewModel)
       { styles = []
       }
+
+init_state :: State
+init_state = ()
 
 updateModel :: Action -> Effect parent State Action
 updateModel = noop
 
-viewModel :: State -> View () Action
-viewModel state = text "Hello!!"
+viewModel :: State -> View State Action
+viewModel state = text "Hello there!"
 
 sheet :: CSS.StyleSheet
 sheet = CSS.sheet_ []
