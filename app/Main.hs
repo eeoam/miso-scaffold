@@ -1,4 +1,5 @@
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Main where
 
@@ -27,7 +28,7 @@ type State = ()
 
 data Action
   = Skip
-  deriving (Show, Eq)
+  deriving stock (Show, Eq)
 
 app :: App State Action
 app = (component () updateModel viewModel)
@@ -38,7 +39,7 @@ updateModel :: Action -> Effect parent State Action
 updateModel = noop
 
 viewModel :: State -> View () Action
-viewModel state = text "Hello!"
+viewModel state = text "Hello!!"
 
-sheet :: CSS.Stylesheet
+sheet :: CSS.StyleSheet
 sheet = CSS.sheet_ []
