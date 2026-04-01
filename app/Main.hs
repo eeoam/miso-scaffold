@@ -3,13 +3,19 @@
 
 module Main where
 
-import Miso
-import Miso.Lens
-import Miso.String
-import Miso.Html.Element as H 
-import Miso.Html.Event as E 
-import Miso.Html.Property as P 
-import Miso.CSS qualified as CSS 
+import Miso 
+  ( reload 
+  , defaultEvents
+  , startApp
+  , App
+  , Component(styles)
+  , component
+  , Effect
+  , noop
+  , View
+  , text
+  , CSS(Sheet))
+import Miso.CSS qualified as Css
 
 #ifdef WASM
 #ifndef INTERACTIVE
@@ -32,7 +38,7 @@ data Action
 
 app :: App State Action
 app = (component init_state updateModel viewModel)
-      { styles = []
+      { styles = [ Sheet style ]
       }
 
 init_state :: State
@@ -42,7 +48,7 @@ updateModel :: Action -> Effect parent State Action
 updateModel = noop
 
 viewModel :: State -> View State Action
-viewModel state = text "Hello there!"
+viewModel state = text "Hello!!!"
 
-sheet :: CSS.StyleSheet
-sheet = CSS.sheet_ []
+style :: Css.StyleSheet
+style = Css.sheet_ []
