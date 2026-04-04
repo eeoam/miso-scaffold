@@ -37,18 +37,18 @@ data Action
   deriving stock (Show, Eq)
 
 app :: App State Action
-app = (component init_state updateModel viewModel)
+app = (component init_state next_state view_state)
       { styles = [ Sheet style ]
       }
 
 init_state :: State
 init_state = ()
 
-updateModel :: Action -> Effect parent State Action
-updateModel = noop
+next_state :: Action -> Effect parent State Action
+next_state = noop
 
-viewModel :: State -> View State Action
-viewModel state = text "Hello!!!"
+view_state :: State -> View State Action
+view_state state = text "Hello, Miso!"
 
 style :: Css.StyleSheet
 style = Css.sheet_ []
